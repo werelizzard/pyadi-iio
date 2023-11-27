@@ -43,10 +43,13 @@ class tdd(context_manager, attribute):
 
     _device_name: str = ""
 
-    def __init__(self, uri=""):
+    def __init__(self, uri="", index=None):
         """TDD Controller"""
+        indexs = ""
+        if index is not None:
+            indexs = "-" + str(index)
         context_manager.__init__(self, uri, self._device_name)
-        self._ctrl = self._ctx.find_device("axi-core-tdd")
+        self._ctrl = self._ctx.find_device("axi-core-tdd" + indexs)
 
     @property
     def frame_length_ms(self) -> float:
